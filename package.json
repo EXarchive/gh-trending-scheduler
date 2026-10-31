@@ -1,0 +1,17 @@
+{
+  "name": "gh-trending-scheduler",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GitHub 热门仓库抓取、分析与定时任务调度",
+  "type": "module",
+  "scripts": {
+    "fetch": "node scripts/fetch-trending.mjs --append",
+    "analyze": "node scripts/analyze.mjs",
+    "run": "node scripts/schedule.mjs --once",
+    "start": "node scripts/schedule.mjs",
+    "report": "node scripts/serve-report.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

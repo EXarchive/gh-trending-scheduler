@@ -1,0 +1,320 @@
+{
+  "generatedAt": "2026-10-31T02:36:20.405Z",
+  "source": {
+    "fetchedAt": "2026-10-31T02:36:20.356Z",
+    "windowDays": 7,
+    "since": "2026-10-24",
+    "repoCount": 30,
+    "totalCount": 2367649
+  },
+  "summary": {
+    "totalStars": 51466,
+    "medianStars": 1225,
+    "p90Stars": 3877,
+    "maxStars": 5412,
+    "languageCount": 12,
+    "avgStarsPerDay": 443.3
+  },
+  "byLanguage": [
+    {
+      "name": "Python",
+      "count": 9
+    },
+    {
+      "name": "TypeScript",
+      "count": 7
+    },
+    {
+      "name": "Unknown",
+      "count": 2
+    },
+    {
+      "name": "JavaScript",
+      "count": 2
+    },
+    {
+      "name": "Go",
+      "count": 2
+    },
+    {
+      "name": "HTML",
+      "count": 2
+    },
+    {
+      "name": "Dart",
+      "count": 1
+    },
+    {
+      "name": "C",
+      "count": 1
+    },
+    {
+      "name": "Kotlin",
+      "count": 1
+    },
+    {
+      "name": "Swift",
+      "count": 1
+    },
+    {
+      "name": "Rust",
+      "count": 1
+    },
+    {
+      "name": "Lua",
+      "count": 1
+    }
+  ],
+  "topOwners": [
+    {
+      "name": "unclebob",
+      "count": 1
+    },
+    {
+      "name": "rddmwmddr",
+      "count": 1
+    },
+    {
+      "name": "anhao",
+      "count": 1
+    },
+    {
+      "name": "interplains",
+      "count": 1
+    },
+    {
+      "name": "designfuchen",
+      "count": 1
+    },
+    {
+      "name": "ccch1mneyyy",
+      "count": 1
+    },
+    {
+      "name": "t3dotgg",
+      "count": 1
+    },
+    {
+      "name": "valentderah",
+      "count": 1
+    }
+  ],
+  "topTopics": [
+    {
+      "name": "claude-code",
+      "count": 4
+    },
+    {
+      "name": "ai-agent",
+      "count": 3
+    },
+    {
+      "name": "android",
+      "count": 3
+    },
+    {
+      "name": "codex",
+      "count": 3
+    },
+    {
+      "name": "chinese",
+      "count": 2
+    },
+    {
+      "name": "webgl",
+      "count": 2
+    },
+    {
+      "name": "coding-agent",
+      "count": 2
+    },
+    {
+      "name": "deepseek-harness",
+      "count": 2
+    },
+    {
+      "name": "llm",
+      "count": 2
+    },
+    {
+      "name": "agent-skills",
+      "count": 2
+    },
+    {
+      "name": "3d",
+      "count": 2
+    },
+    {
+      "name": "adb",
+      "count": 1
+    },
+    {
+      "name": "coloros",
+      "count": 1
+    },
+    {
+      "name": "debloat",
+      "count": 1
+    },
+    {
+      "name": "hyperos",
+      "count": 1
+    }
+  ],
+  "topByStars": [
+    {
+      "fullName": "unclebob/ub-mode",
+      "stars": 5412,
+      "language": "Unknown",
+      "description": "",
+      "htmlUrl": "https://github.com/unclebob/ub-mode"
+    },
+    {
+      "fullName": "rddmwmddr/android-ad-cleaner",
+      "stars": 5098,
+      "language": "Python",
+      "description": "关掉国产安卓手机系统里的广告、热搜、资讯推荐和营销推送。不 root，可还原，支持 AI 智能体一键执行。",
+      "htmlUrl": "https://github.com/rddmwmddr/android-ad-cleaner"
+    },
+    {
+      "fullName": "anhao/ai-pose-gallery-zh",
+      "stars": 4007,
+      "language": "TypeScript",
+      "description": "中文版 AI 姿势参考图库 · 1439 组 / 2878 张图片 / 完整汉化 · 零依赖静态画廊",
+      "htmlUrl": "https://github.com/anhao/ai-pose-gallery-zh"
+    },
+    {
+      "fullName": "interplains/Zero-Breach-Toolkit",
+      "stars": 3877,
+      "language": "Python",
+      "description": "Free, open-source, offline checks for traces of known mercenary spyware. Works on Windows, macOS and Linux, Android phones and iPhone backups.",
+      "htmlUrl": "https://github.com/interplains/Zero-Breach-Toolkit"
+    },
+    {
+      "fullName": "designfuchen/word-atlas",
+      "stars": 3385,
+      "language": "TypeScript",
+      "description": "词光 · Word Atlas — Illustrated IELTS vocabulary with 7,298 words, UK/US audio and FSRS review. Open-source app + CC BY 4.0 dataset.",
+      "htmlUrl": "https://github.com/designfuchen/word-atlas"
+    },
+    {
+      "fullName": "ccch1mneyyy/dsh-Go",
+      "stars": 2606,
+      "language": "Dart",
+      "description": "dsh-go — DeepSeek Harness 装进口袋：手机本机运行，也能遥控你的电脑。",
+      "htmlUrl": "https://github.com/ccch1mneyyy/dsh-Go"
+    },
+    {
+      "fullName": "t3dotgg/tstack",
+      "stars": 2472,
+      "language": "Python",
+      "description": "The agent skills I use every day. Works with Claude Code and Codex.",
+      "htmlUrl": "https://github.com/t3dotgg/tstack"
+    },
+    {
+      "fullName": "valentderah/totk-pc-recomp",
+      "stars": 1663,
+      "language": "C",
+      "description": "Static recompilation of The Legend of Zelda: Tears of the Kingdom to native Windows x86-64, with a Vulkan renderer. Game files not included.",
+      "htmlUrl": "https://github.com/valentderah/totk-pc-recomp"
+    },
+    {
+      "fullName": "andyhuo520/digital-human-koubo",
+      "stars": 1558,
+      "language": "TypeScript",
+      "description": "AI digital-human talking-head videos from one photo: Renoise MCP generation + 5 editing styles + 48 creator-grade packaging components. Agent skill for Claude Code / Codex / OpenClaw / WorkBuddy …",
+      "htmlUrl": "https://github.com/andyhuo520/digital-human-koubo"
+    },
+    {
+      "fullName": "wangzan101/Mika",
+      "stars": 1470,
+      "language": "Kotlin",
+      "description": "Mika — 你手机上的私人 AI 助理，替你操作 App、上网、把事办成。An on-device AI agent for Android that operates apps and the web to get things done for you.",
+      "htmlUrl": "https://github.com/wangzan101/Mika"
+    }
+  ],
+  "topByVelocity": [
+    {
+      "fullName": "heydamir/unslop",
+      "starsPerDay": 1380,
+      "stars": 1380,
+      "ageDays": 1,
+      "language": "JavaScript",
+      "htmlUrl": "https://github.com/heydamir/unslop"
+    },
+    {
+      "fullName": "unclebob/ub-mode",
+      "starsPerDay": 1082.4,
+      "stars": 5412,
+      "ageDays": 5,
+      "language": "Unknown",
+      "htmlUrl": "https://github.com/unclebob/ub-mode"
+    },
+    {
+      "fullName": "anhao/ai-pose-gallery-zh",
+      "starsPerDay": 1001.8,
+      "stars": 4007,
+      "ageDays": 4,
+      "language": "TypeScript",
+      "htmlUrl": "https://github.com/anhao/ai-pose-gallery-zh"
+    },
+    {
+      "fullName": "valentderah/totk-pc-recomp",
+      "starsPerDay": 831.5,
+      "stars": 1663,
+      "ageDays": 2,
+      "language": "C",
+      "htmlUrl": "https://github.com/valentderah/totk-pc-recomp"
+    },
+    {
+      "fullName": "interplains/Zero-Breach-Toolkit",
+      "starsPerDay": 775.4,
+      "stars": 3877,
+      "ageDays": 5,
+      "language": "Python",
+      "htmlUrl": "https://github.com/interplains/Zero-Breach-Toolkit"
+    },
+    {
+      "fullName": "wangzan101/Mika",
+      "starsPerDay": 735,
+      "stars": 1470,
+      "ageDays": 2,
+      "language": "Kotlin",
+      "htmlUrl": "https://github.com/wangzan101/Mika"
+    },
+    {
+      "fullName": "rddmwmddr/android-ad-cleaner",
+      "starsPerDay": 728.3,
+      "stars": 5098,
+      "ageDays": 7,
+      "language": "Python",
+      "htmlUrl": "https://github.com/rddmwmddr/android-ad-cleaner"
+    },
+    {
+      "fullName": "kevinraymond/florilegium",
+      "starsPerDay": 660,
+      "stars": 660,
+      "ageDays": 1,
+      "language": "Lua",
+      "htmlUrl": "https://github.com/kevinraymond/florilegium"
+    },
+    {
+      "fullName": "paipiange/nvzhuang",
+      "starsPerDay": 624.5,
+      "stars": 1249,
+      "ageDays": 2,
+      "language": "Go",
+      "htmlUrl": "https://github.com/paipiange/nvzhuang"
+    },
+    {
+      "fullName": "designfuchen/word-atlas",
+      "starsPerDay": 564.2,
+      "stars": 3385,
+      "ageDays": 6,
+      "language": "TypeScript",
+      "htmlUrl": "https://github.com/designfuchen/word-atlas"
+    }
+  ],
+  "trend": [],
+  "historyPoints": 1
+}

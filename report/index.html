@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GitHub 热门仓库分析报告</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --orange: #d29922;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+    line-height: 1.6;
+  }
+  header {
+    padding: 32px 40px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  h1 { margin: 0 0 8px; font-size: 26px; }
+  .meta { color: var(--muted); font-size: 13px; }
+  main { padding: 28px 40px 60px; max-width: 1280px; }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .card .k { color: var(--muted); font-size: 12px; }
+  .card .v { font-size: 26px; font-weight: 700; margin-top: 4px; }
+  .card .v.accent { color: var(--accent); }
+  .card .v.green { color: var(--green); }
+  .card .v.orange { color: var(--orange); }
+  section { margin-bottom: 36px; }
+  h2 { font-size: 17px; margin: 0 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .bars { display: flex; flex-direction: column; gap: 10px; }
+  .bar-row { display: grid; grid-template-columns: 130px 1fr 60px; align-items: center; gap: 12px; font-size: 13px; }
+  .bar-track { height: 16px; background: #21262d; border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; background: linear-gradient(90deg, #1f6feb, #58a6ff); border-radius: 4px; }
+  .bar-num { text-align: right; color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 500; font-size: 12px; }
+  td a { color: var(--accent); text-decoration: none; }
+  td a:hover { text-decoration: underline; }
+  .tag {
+    display: inline-block;
+    padding: 1px 8px;
+    margin: 0 4px 4px 0;
+    border-radius: 999px;
+    background: #21262d;
+    color: var(--muted);
+    font-size: 11px;
+  }
+  .empty { color: var(--muted); font-size: 13px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  @media (max-width: 900px) { .grid2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>GitHub 热门仓库分析报告</h1>
+  <div class="meta" id="meta">加载中…</div>
+</header>
+<main>
+  <div class="cards" id="cards"></div>
+
+  <div class="grid2">
+    <section>
+      <h2>语言分布</h2>
+      <div class="bars" id="langs"></div>
+    </section>
+    <section>
+      <h2>热门标签</h2>
+      <div id="topics"></div>
+    </section>
+  </div>
+
+  <section>
+    <h2>Star 最高的 10 个仓库</h2>
+    <table id="top-stars"></table>
+  </section>
+
+  <section>
+    <h2>涨星最快的 10 个仓库（日均 star）</h2>
+    <table id="top-velocity"></table>
+  </section>
+
+  <section>
+    <h2>跨快照趋势（star 增量）</h2>
+    <table id="trend"></table>
+  </section>
+
+  <section>
+    <h2>活跃组织 / 作者</h2>
+    <div class="bars" id="owners"></div>
+  </section>
+</main>
+
+<script>
+async function load() {
+  let data
+  try {
+    const res = await fetch('./data.json', { cache: 'no-store' })
+    data = await res.json()
+  } catch (err) {
+    document.getElementById('meta').textContent = '读取 data.json 失败：' + err.message
+    return
+  }
+
+  const { source, summary, byLanguage, topOwners, topTopics, topByStars, topByVelocity, trend, generatedAt } = data
+
+  document.getElementById('meta').textContent =
+    `数据抓取于 ${new Date(source.fetchedAt).toLocaleString()} · 窗口 ${source.windowDays} 天（${source.since} 起）` +
+    ` · 样本 ${source.repoCount} 个仓库 / 同期共 ${source.totalCount} 个 · 报告生成于 ${new Date(generatedAt).toLocaleString()}`
+
+  const cards = [
+    { k: '样本仓库数', v: source.repoCount, cls: 'accent' },
+    { k: '总 Star', v: summary.totalStars.toLocaleString(), cls: 'green' },
+    { k: '中位 Star', v: summary.medianStars.toLocaleString(), cls: '' },
+    { k: 'P90 Star', v: summary.p90Stars.toLocaleString(), cls: '' },
+    { k: '语言种类', v: summary.languageCount, cls: 'orange' },
+    { k: '平均 star/天', v: summary.avgStarsPerDay, cls: '' },
+    { k: '历史快照数', v: data.historyPoints, cls: '' },
+  ]
+  document.getElementById('cards').innerHTML = cards
+    .map((c) => `<div class="card"><div class="k">${c.k}</div><div class="v ${c.cls}">${c.v}</div></div>`)
+    .join('')
+
+  const maxLang = Math.max(1, ...byLanguage.map((l) => l.count))
+  document.getElementById('langs').innerHTML = byLanguage.length
+    ? byLanguage
+        .map(
+          (l) => `<div class="bar-row">
+            <span>${l.name}</span>
+            <div class="bar-track"><div class="bar-fill" style="width:${(l.count / maxLang) * 100}%"></div></div>
+            <span class="bar-num">${l.count}</span>
+          </div>`,
+        )
+        .join('')
+    : '<div class="empty">无数据</div>'
+
+  const maxOwner = Math.max(1, ...topOwners.map((o) => o.count))
+  document.getElementById('owners').innerHTML = topOwners.length
+    ? topOwners
+        .map(
+          (o) => `<div class="bar-row">
+            <span>${o.name}</span>
+            <div class="bar-track"><div class="bar-fill" style="width:${(o.count / maxOwner) * 100}%"></div></div>
+            <span class="bar-num">${o.count}</span>
+          </div>`,
+        )
+        .join('')
+    : '<div class="empty">无数据</div>'
+
+  document.getElementById('topics').innerHTML = topTopics.length
+    ? topTopics.map((t) => `<span class="tag">${t.name} · ${t.count}</span>`).join('')
+    : '<div class="empty">无标签数据</div>'
+
+  const tableHTML = (rows, head, cells) =>
+    rows.length
+      ? `<thead><tr>${head.map((h) => `<th>${h}</th>`).join('')}</tr></thead>
+         <tbody>${rows.map((r) => `<tr>${cells(r).map((c) => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody>`
+      : '<tbody><tr><td class="empty">无数据（多跑几次 fetch 才会有跨快照趋势）</td></tr></tbody>'
+
+  document.getElementById('top-stars').innerHTML = tableHTML(
+    topByStars,
+    ['仓库', '语言', 'Star', '简介'],
+    (r) => [
+      `<a href="${r.htmlUrl}" target="_blank" rel="noreferrer">${r.fullName}</a>`,
+      r.language || '-',
+      r.stars.toLocaleString(),
+      (r.description || '-').slice(0, 70),
+    ],
+  )
+
+  document.getElementById('top-velocity').innerHTML = tableHTML(
+    topByVelocity,
+    ['仓库', '语言', 'star/天', 'Star', '库龄(天)'],
+    (r) => [
+      `<a href="${r.htmlUrl}" target="_blank" rel="noreferrer">${r.fullName}</a>`,
+      r.language || '-',
+      r.starsPerDay,
+      r.stars.toLocaleString(),
+      r.ageDays,
+    ],
+  )
+
+  document.getElementById('trend').innerHTML = tableHTML(
+    trend,
+    ['仓库', '起始 Star', '最新 Star', '增量'],
+    (r) => [r.fullName, r.from.toLocaleString(), r.to.toLocaleString(), `+${r.delta}`],
+  )
+}
+
+load()
+</script>
+</body>
+</html>
